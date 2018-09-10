@@ -9,9 +9,13 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.bson.Document;
+import org.modelmapper.ModelMapper;
+
 import com.connect.mongo.Connect;
 import com.dao.SolutionDao;
+import com.dao.TestDao;
 import com.dto.SolutionDto;
+import com.dto.TestDto;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.mongodb.BasicDBObject;
@@ -29,10 +33,8 @@ public class Herb {
 		JsonObject message = new JsonObject();
 		Gson gson = new Gson();
 		MongoCollection<Document> collection = mongo.db.getCollection("solution");
-		
-		SolutionDao solutionDao = new SolutionDao();
-		solutionDao.setSeed(solutionDto.getSeed());
-		solutionDao.setWater(solutionDto.getWater());
+		ModelMapper Mapper = new ModelMapper();
+		SolutionDao solutionDao = Mapper.map(solutionDto, SolutionDao.class);
 		
 		String json = gson.toJson(solutionDao);
 		Document document = Document.parse(json);

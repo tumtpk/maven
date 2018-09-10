@@ -6,6 +6,7 @@ public class SolutionDto {
 	String id;
 	String water;
 	String seed;
+	TestDto test;
 	
 	public String getWater() {
 		return water;
@@ -24,6 +25,12 @@ public class SolutionDto {
 	}
 	public void setId(String id) {
 		this.id = id;
+	}
+	public TestDto getTest() {
+		return test;
+	}
+	public void setTest(TestDto test) {
+		this.test = test;
 	}	
 	
 }
